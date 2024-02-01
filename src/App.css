@@ -28,7 +28,7 @@ body {
   padding: 30px;
   border-radius: 30px;
 }
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 500px) {
   .app {
     margin: 0;
     padding: 20px;
@@ -84,7 +84,7 @@ p {
   grid-auto-rows: auto;
   gap: 10px;
 }
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 500px) {
   .grid {
     grid-template-columns: 1fr;
   }
@@ -130,7 +130,7 @@ td {
   padding: 3px 5px;
   text-align: center;
 }
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 500px) {
   th,
   td {
     font-size: 1rem;
