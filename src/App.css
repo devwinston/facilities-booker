@@ -1,38 +1,212 @@
-.App {
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+* {
+  /* border: 1px solid red; */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Fira Sans Extra Condensed", sans-serif;
+}
+
+:root {
+  --background: rgba(255, 249, 244, 1);
+  --primary: rgba(249, 238, 224, 1);
+  --secondary: rgba(255, 221, 183, 1);
+  --tertiary: rgba(205, 224, 218, 1);
+  --font: rgba(56, 54, 51, 1);
+}
+
+body {
+  background: var(--background);
+}
+
+.app {
+  background: var(--primary);
+  width: 600px;
+  max-width: 100%;
+  margin: 20px auto;
+  padding: 30px;
+  border-radius: 30px;
+}
+@media only screen and (max-width: 500px) {
+  .app {
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    height: 100%;
+    border-radius: 0;
+  }
+}
+
+.logo {
+  margin: 0 auto;
+  width: 400px;
+  max-width: 100%;
+}
+
+.logo img {
+  width: 100%;
+  height: auto;
+}
+
+h1 {
+  color: var(--font);
+  margin: 15px auto;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h2 {
+  color: var(--font);
+  margin: 10px 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+p {
+  color: var(--font);
+  font-size: 1.2rem;
+}
+
+.announcements {
+  background: rgba(205, 224, 218, 0.5);
+  padding: 10px 15px;
+  border-style: double;
+  border-color: rgba(56, 54, 51, 0.2);
+  border-width: 5px;
+  border-radius: 10px;
+}
+
+.announcements p {
+  margin: 5px 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: auto;
+  gap: 10px;
+}
+@media only screen and (max-width: 500px) {
+  .grid {
+    grid-template-columns: 1fr;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.item {
+  background: var(--secondary);
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.item:hover {
+  background: var(--tertiary);
+}
+
+button {
+  display: block;
+  background: var(--secondary);
+  color: var(--font);
+  padding: 10px 20px;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--tertiary);
+}
+
+table {
+  width: 100%;
+  table-layout: auto;
+  border-collapse: colapse;
+}
+
+th,
+td {
+  color: var(--font);
+  font-size: 1.2rem;
+  padding: 3px 5px;
+  text-align: center;
+}
+@media only screen and (max-width: 500px) {
+  th,
+  td {
+    font-size: 1rem;
+  }
+}
+
+th {
+  background: var(--tertiary);
+}
+
+tr {
+  background: var(--secondary);
+}
+
+.delete {
+  color: var(--font);
+  cursor: pointer;
+}
+
+.delete:hover {
+  color: red;
+}
+
+form p,
+input {
+  font-size: 1.2rem;
+}
+
+input[type="email"],
+input[type="password"] {
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 1.2rem;
+}
+
+input[type="checkbox"] {
+  margin: 8px 0;
+  margin-right: 12px;
+  transform: scale(1.5);
+}
+
+label {
+  font-size: 1.2rem;
+}
+
+.book-button,
+.signin-button {
+  margin-top: 20px;
+}
+
+.spinner-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 5000;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.spinner {
+  width: 64px;
+  height: 64px;
+  border: 8px solid;
+  border-color: var(--secondary) transparent var(--secondary) transparent;
+  border-radius: 50%;
+  animation: spin 1.2s linear infinite;
 }
-
-@keyframes App-logo-spin {
-  from {
+@keyframes spin {
+  0% {
     transform: rotate(0deg);
   }
-  to {
+  100% {
     transform: rotate(360deg);
   }
 }
