@@ -17,7 +17,7 @@ const SignIn = () => {
     console.log("useEffect fired");
 
     onAuthStateChanged(auth, (user) => {
-      if (user) navigate("/");
+      if (user) navigate("/home");
     });
     // eslint-disable-next-line
   }, []);
@@ -33,7 +33,7 @@ const SignIn = () => {
 
       setLoading(false);
       setError("");
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       setLoading(false);
       setError(error.message);

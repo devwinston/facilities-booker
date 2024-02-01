@@ -28,7 +28,7 @@ const Facility = () => {
     console.log("useEffect fired");
 
     onAuthStateChanged(auth, (user) => {
-      if (!user) navigate("/signin");
+      if (!user) navigate("/");
     });
     // eslint-disable-next-line
   }, []);
@@ -128,7 +128,7 @@ const Facility = () => {
         await addDoc(collection(db, "bookings"), booking);
         setLoading(false);
         setError("");
-        navigate("/");
+        navigate("/home");
       } catch (error) {
         setLoading(false);
         setError(error.message);
@@ -144,7 +144,7 @@ const Facility = () => {
 
   return (
     <div className="facility">
-      <button onClick={() => navigate("/")}>Back</button>
+      <button onClick={() => navigate("/home")}>Back</button>
       <h1>{title}</h1>
       <form onSubmit={handleSubmit}>
         <h2>Select Date</h2>

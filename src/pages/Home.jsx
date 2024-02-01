@@ -26,7 +26,7 @@ const Home = () => {
     console.log("useEffect fired");
 
     onAuthStateChanged(auth, (user) => {
-      if (!user) navigate("/signin");
+      if (!user) navigate("/");
     });
     // eslint-disable-next-line
   }, []);
@@ -63,7 +63,7 @@ const Home = () => {
 
     onAuthStateChanged(auth, (user) => {
       if (user) getBookings(user);
-      else navigate("/signin");
+      else navigate("/");
     });
     // eslint-disable-next-line
   }, []);
@@ -83,7 +83,7 @@ const Home = () => {
 
   const handleSignout = async () => {
     await auth.signOut();
-    navigate("/signin");
+    navigate("/");
   };
 
   if (loading) {
