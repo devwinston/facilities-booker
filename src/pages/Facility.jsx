@@ -53,15 +53,17 @@ const Facility = () => {
           );
           const snapshot = await getDocs(q);
 
-          let timeslots = [];
-          snapshot.forEach((doc) => timeslots.push(...doc.data().timeslot));
+          let unavailableTimeslots = [];
+          snapshot.forEach((doc) =>
+            unavailableTimeslots.push(...doc.data().timeslot)
+          );
 
           let availableTimeslots = Array.from(
             { length: end - start },
             (_, index) => start + index
           );
           availableTimeslots = availableTimeslots.filter(
-            (timeslot) => !timeslots.includes(timeslot)
+            (t) => !unavailableTimeslots.includes(t)
           );
 
           setAvailable(availableTimeslots);
@@ -125,10 +127,37 @@ const Facility = () => {
           timestamp: serverTimestamp(),
         };
 
-        await addDoc(collection(db, "bookings"), booking);
-        setLoading(false);
-        setError("");
-        navigate("/home");
+        // check booking
+
+        const q = query(
+          collection(db, "bookings"),
+          where("facility", "==", facility),
+          where("date", "==", date),
+          where("location", "==", location)
+        );
+        const snapshot = await getDocs(q);
+
+        let unavailableTimeslots = [];
+        snapshot.forEach((doc) =>
+          unavailableTimeslots.push(...doc.data().timeslot)
+        );
+
+        const isUnavailable = timeslot.some((t) =>
+          unavailableTimeslots.includes(t)
+        );
+
+        // add booking
+
+        if (isUnavailable) {
+          window.alert("Timeslot no longer available. Please refresh page.");
+          setLoading(false);
+          setError("");
+        } else {
+          await addDoc(collection(db, "bookings"), booking);
+          setLoading(false);
+          setError("");
+          navigate("/home");
+        }
       } catch (error) {
         setLoading(false);
         setError(error.message);

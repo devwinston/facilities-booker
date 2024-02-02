@@ -179,6 +179,12 @@ input[type="password"] {
   border-radius: 10px;
   width: 50%;
 }
+@media only screen and (max-width: 500px) {
+  input[type="email"],
+  input[type="password"] {
+    width: 90%;
+  }
+}
 
 input[type="checkbox"] {
   margin: 8px 0;
