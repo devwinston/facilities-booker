@@ -125,16 +125,8 @@ table {
 
 th,
 td {
-  color: var(--font);
-  font-size: 1.2rem;
   padding: 3px 5px;
   text-align: center;
-}
-@media only screen and (max-width: 500px) {
-  th,
-  td {
-    font-size: 1rem;
-  }
 }
 
 th {
@@ -145,12 +137,25 @@ tr {
   background: var(--secondary);
 }
 
-.delete {
+th p,
+tr p {
+  color: var(--font);
+  font-size: 1.2rem;
+  text-align: center;
+}
+@media only screen and (max-width: 500px) {
+  th p,
+  tr p {
+    font-size: 1rem;
+  }
+}
+
+.delete-icon {
   color: var(--font);
   cursor: pointer;
 }
 
-.delete:hover {
+.delete-icon:hover {
   color: red;
 }
 
@@ -159,11 +164,20 @@ input {
   font-size: 1.2rem;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 input[type="email"],
 input[type="password"] {
-  margin: 10px 0;
+  /* margin: 10px 0; */
   padding: 10px;
   font-size: 1.2rem;
+  border-radius: 10px;
+  width: 50%;
 }
 
 input[type="checkbox"] {
@@ -209,4 +223,10 @@ label {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin-top: 20px;
 }

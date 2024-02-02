@@ -81,15 +81,15 @@ const Facility = () => {
 
   let details;
   if (facility === "barbeque")
-    details = { title: "Barbeque Pit", locations: 2, start: 8, end: 20 };
+    details = { title: "Barbeque Pit", locations: 3, start: 8, end: 22 };
   else if (facility === "clubhouse")
-    details = { title: "Clubhouse", locations: 5, start: 8, end: 22 };
+    details = { title: "Clubhouse", locations: 3, start: 8, end: 22 };
   else if (facility === "gymnasium")
-    details = { title: "Gymnasium", locations: 2, start: 8, end: 20 };
+    details = { title: "Gymnasium", locations: 3, start: 8, end: 22 };
   else if (facility === "squash")
-    details = { title: "Squash Court", locations: 2, start: 8, end: 20 };
+    details = { title: "Squash Court", locations: 3, start: 8, end: 22 };
   else if (facility === "tennis")
-    details = { title: "Tennis Court", locations: 2, start: 8, end: 20 };
+    details = { title: "Tennis Court", locations: 3, start: 8, end: 22 };
   const { title, locations, start, end } = details;
 
   const today = new Date().toLocaleDateString("en-CA", {
@@ -169,35 +169,45 @@ const Facility = () => {
                   checked={location === index + 1}
                   onChange={() => handleLocation(index + 1)}
                 />
-                {index + 1}
+                Location {index + 1}
               </label>
             </div>
           ))}
 
         <h2>Available Timeslots</h2>
         {!(date && location) && <p>Please select date and location.</p>}
-        {date &&
-          location &&
-          available &&
-          available.map((t, index) => (
-            <div key={index}>
-              <label>
+        <div className="grid">
+          {date &&
+            location &&
+            available &&
+            available.map((t, index) => (
+              <label key={index}>
                 <input
                   type="checkbox"
                   value={t}
                   checked={timeslot.includes(t)}
                   onChange={() => handleTimeslot(t)}
                 />
-                {t} - {t + 1}
+                {t < 12
+                  ? String(t) + " AM"
+                  : t === 12
+                  ? String(t) + " PM"
+                  : String(t - 12) + " PM"}{" "}
+                -{" "}
+                {t + 1 < 12
+                  ? String(t + 1) + " AM"
+                  : t + 1 === 12
+                  ? String(t + 1) + " PM"
+                  : String(t + 1 - 12) + " PM"}
               </label>
-            </div>
-          ))}
+            ))}
+        </div>
 
         <button className="book-button" type="submit">
           Book
         </button>
       </form>
-      {error && <p>{error}</p>}
+      {error && <p className="error-message">{error}</p>}
     </div>
   );
 };

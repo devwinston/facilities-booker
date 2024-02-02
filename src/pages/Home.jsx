@@ -10,7 +10,7 @@ import {
   deleteDoc,
   doc,
 } from "firebase/firestore";
-import { MdDelete } from "react-icons/md";
+import { MdDeleteForever } from "react-icons/md";
 
 import { auth, db } from "../config/firebase.config";
 import Spinner from "../components/Spinner";
@@ -107,11 +107,19 @@ const Home = () => {
         <table>
           <thead>
             <tr>
-              <th>Date</th>
-              <th>Facility</th>
-              <th>Location</th>
-              <th>Timeslot</th>
-              <th>Delete</th>
+              <th>
+                <p>Date</p>
+              </th>
+              <th>
+                <p>Facility</p>
+              </th>
+              <th>
+                <p>Location</p>
+              </th>
+              <th>
+                <p>Timeslot</p>
+              </th>
+              <th></th>
             </tr>
           </thead>
 
@@ -139,15 +147,25 @@ const Home = () => {
                 <td>
                   {booking.data.timeslot.map((timeslot, index) => (
                     <p key={index}>
-                      {timeslot} - {timeslot + 1}
+                      {timeslot < 12
+                        ? String(timeslot) + " AM"
+                        : timeslot === 12
+                        ? String(timeslot) + " PM"
+                        : String(timeslot - 12) + " PM"}{" "}
+                      -{" "}
+                      {timeslot + 1 < 12
+                        ? String(timeslot + 1) + " AM"
+                        : timeslot + 1 === 12
+                        ? String(timeslot + 1) + " PM"
+                        : String(timeslot + 1 - 12) + " PM"}
                     </p>
                   ))}
                 </td>
                 <td>
-                  <MdDelete
-                    className="delete"
+                  <MdDeleteForever
+                    className="delete-icon"
                     onClick={() => handleDelete(booking.id)}
-                    size={25}
+                    size={23}
                   />
                 </td>
               </tr>

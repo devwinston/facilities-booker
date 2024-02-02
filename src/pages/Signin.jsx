@@ -72,7 +72,7 @@ const SignIn = () => {
           Sign In
         </button>
       </form>
-      {error && <p>{error}</p>}
+      {error && <p className="error-message">{error}</p>}
     </div>
   );
 };
