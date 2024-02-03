@@ -1,4 +1,6 @@
-Facilities booking application for condominiums (and other applications) built with React and Firebase.
+Facilities booking application for condominiums.
+
+Basic React/Firebase application featuring CRUD operations and user authentication/authorisation.
 
 [Live Site](https://facilities-booker.web.app/)
 
