@@ -120,7 +120,7 @@ button:hover {
 table {
   width: 100%;
   table-layout: auto;
-  border-collapse: colapse;
+  /* border-collapse: collapse; */
 }
 
 th,
